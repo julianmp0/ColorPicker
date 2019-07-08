@@ -1,14 +1,15 @@
 package com.julianm.colorpickerlibrary
 
 import android.content.Context
-import androidx.fragment.app.DialogFragment
 import android.os.Bundle
+import android.support.annotation.ColorInt
+import android.support.v4.app.DialogFragment
+import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.*
-import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.dialog_color_picker.*
 
 

@@ -1,8 +1,9 @@
 package com.julianm.colorpicker
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
-import androidx.annotation.ColorInt
+import android.support.annotation.ColorInt
+import android.support.v7.app.AppCompatActivity
 import com.julianm.colorpickerlibrary.ColorPickerDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
