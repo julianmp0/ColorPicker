@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="colors">
+
+        <item>"#f44336"</item>
+
+        <item>@string/md_red_500</item>
+        <item>@string/md_purple_500</item>
+        <item>@string/md_deep_purple_500</item>
+        <item>@string/md_indigo_500</item>
+        <item>@string/md_blue_500</item>
+        <item>@string/md_light_blue_500</item>
+        <item>@string/md_cyan_500</item>
+        <item>@string/md_teal_500</item>
+        <item>@string/md_green_500</item>
+    </string-array>
+
+
+
+</resources>

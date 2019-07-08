@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ColorPickerLibrary</string>
+    <string name="default_dialog_title">Selecciona el color</string>
+
+
+    <string name="md_red_500" >#f44336</string>
+
+    <string name="md_pink_500">#e91e63</string>
+    <string name="md_purple_500">#9c27b0</string>
+    <string name="md_deep_purple_500">#673ab7</string>
+    <string name="md_indigo_500">#3f51b5</string>
+    <string name="md_blue_500">#2196f3</string>
+    <string name="md_light_blue_500">#03a9f4</string>
+    <string name="md_cyan_500">#00bcd4</string>
+    <string name="md_teal_500">#009688</string>
+    <string name="md_green_500">#4caf50</string>
+</resources>
