@@ -1,4 +1,4 @@
-package com.julianm.colorpickerlibrary
+package com.julianm.colorpickerlibrary.colorpicker
 
 import android.content.Context
 import android.graphics.Color
@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.devs.vectorchildfinder.VectorChildFinder
+import com.julianm.colorpickerlibrary.R
 import kotlinx.android.synthetic.main.item_color.view.*
 
 class ColorsAdapter(
     val context: Context,
-    val mColors: MutableList<ColorModel>,val onColorSelectedListener: Callback):
+    val mColors: MutableList<ColorModel>, val onColorSelectedListener: Callback
+):
     RecyclerView.Adapter<ColorsAdapter.BaseViewHolder>() {
     override fun getItemCount(): Int {
         return mColors.size
@@ -20,7 +22,7 @@ class ColorsAdapter(
     var lastColorPositionSelected = -1
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
 
-        val vector = VectorChildFinder(context,R.drawable.ic_circulo,holder.itemView.itemColor)
+        val vector = VectorChildFinder(context, R.drawable.ic_circulo,holder.itemView.itemColor)
         val fillColorPath = vector.findPathByName("color")
         fillColorPath.fillColor = Color.parseColor(mColors[position].color)
 
@@ -46,7 +48,13 @@ class ColorsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 
-        return BaseViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_color,parent,false))
+        return BaseViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_color,
+                parent,
+                false
+            )
+        )
 
     }
 

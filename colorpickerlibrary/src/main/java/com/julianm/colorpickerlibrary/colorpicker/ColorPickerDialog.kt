@@ -1,26 +1,21 @@
-package com.julianm.colorpickerlibrary
+package com.julianm.colorpickerlibrary.colorpicker
 
 import android.content.Context
 import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.*
+import com.julianm.colorpickerlibrary.R
 import kotlinx.android.synthetic.main.dialog_color_picker.*
 
 
-class ColorPickerDialog() : DialogFragment() {
+class ColorPickerDialog : DialogFragment() {
     companion object {
-
-
         private val KEY_SHOW_DEFAULT_COLORS = "show_default_colors"
-
         private var mListener: OnColorSelectedListener? = null
-
         private var colorsList = mutableListOf<ColorModel>()
     }
 
@@ -33,15 +28,14 @@ class ColorPickerDialog() : DialogFragment() {
             mArgs = Bundle()
         }
 
-        fun setShowDefaultColors(defaultColors : Boolean):Builder{
+        fun setShowDefaultColors(defaultColors : Boolean): Builder {
             mArgs!!.putBoolean(KEY_SHOW_DEFAULT_COLORS, defaultColors)
             return this
         }
 
         fun setColors(colorsArrayRes: Array<String>): Builder {
             colorsArrayRes.forEach {
-                Log.d("colorsArrayRes",it)
-                colorsList.add(ColorModel(it,false))
+                colorsList.add(ColorModel(it, false))
             }
             return this
         }
@@ -55,7 +49,7 @@ class ColorPickerDialog() : DialogFragment() {
             val dialog = ColorPickerDialog()
             dialog.arguments = mArgs
             dialog.setOnColorSelectedListener(mListener!!)
-            dialog.setColorsList(colorsList!!)
+            dialog.setColorsList(colorsList)
             return dialog
         }
     }
@@ -70,57 +64,44 @@ class ColorPickerDialog() : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         return inflater.inflate(R.layout.dialog_color_picker, container, false)!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //super.onViewCreated(view, savedInstanceState)
-
         var colorSelected :Int?= null
-
         okButton.setOnClickListener {
             dismiss()
             mListener!!.onColorSelected(colorSelected)
         }
-
         cancelButton.setOnClickListener {
             dismiss()
             mListener!!.onColorSelected(null)
         }
-
-
-        val adapter = ColorsAdapter(activity!!, colorsList!!,object : ColorsAdapter.Callback{
-            override fun onColorSelected(color: Int) {
-                colorSelected = color
-
-
-            }
-        })
-
+        val adapter = ColorsAdapter(
+            activity!!,
+            colorsList,
+            object : ColorsAdapter.Callback {
+                override fun onColorSelected(color: Int) {
+                    colorSelected = color
+                }
+            })
         rvColors.layoutManager = GridLayoutManager(activity,5)
-
         rvColors.adapter = adapter
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = arguments
-
         if (args != null && args.containsKey(KEY_SHOW_DEFAULT_COLORS)) {
             if (args.getBoolean(KEY_SHOW_DEFAULT_COLORS)){
-
                 colorsList = loadDefaultColors()
-
             }
         }
     }
 
     private fun loadDefaultColors(): MutableList<ColorModel> {
-
         val colorsList = mutableListOf<ColorModel>()
-
         colorsList.add(ColorModel("#ffffff"))
         colorsList.add(ColorModel("#FF0000"))
         colorsList.add(ColorModel("#00FF00"))
@@ -138,10 +119,7 @@ class ColorPickerDialog() : DialogFragment() {
         colorsList.add(ColorModel("#8000FF"))
         colorsList.add(ColorModel("#00FF80"))
         colorsList.add(ColorModel("#BBBB20"))
-
         return colorsList
-
-
     }
 
     interface OnColorSelectedListener {
