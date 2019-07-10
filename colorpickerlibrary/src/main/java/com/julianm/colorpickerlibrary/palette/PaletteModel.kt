@@ -7,6 +7,6 @@ class PaletteModel (var title : String , var listPalette : MutableList<ItemPalet
 
 }
 
-class ItemPalette (var imageDrawable: Int, var selected : Boolean){
+class ItemPalette (var imageDrawable: Int, var selected : Boolean, var isVector:Boolean = true){
 
 }

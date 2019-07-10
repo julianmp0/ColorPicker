@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.devs.vectorchildfinder.VectorChildFinder
+import com.devs.vectorchildfinder.VectorDrawableCompat
 import com.julianm.colorpickerlibrary.R
 import kotlinx.android.synthetic.main.item_patelle_child.view.*
 
@@ -30,21 +31,29 @@ class PaletteAdapterChild(
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
 
+        val vector: VectorChildFinder?
+        var backgroundColorPath : VectorDrawableCompat.VFullPath? = null
 
 
-        val vector = VectorChildFinder(context, listPalette[p1].imageDrawable,p0.itemView.ivPaletteChild)
-        val backgroundColorPath = vector.findPathByName("background")
+        if (listPalette[p1].isVector){
+            vector = VectorChildFinder(context, listPalette[p1].imageDrawable,p0.itemView.ivPaletteChild)
+            backgroundColorPath = vector.findPathByName("background")
 
 
-        if (listPalette[p1].selected){
-            lastPalettePositionSelected = p1
-            backgroundColorPath.fillColor = Color.LTGRAY
-        }else{
-            backgroundColorPath.fillColor = Color.WHITE
+            if (listPalette[p1].selected){
+                lastPalettePositionSelected = p1
+                backgroundColorPath.fillColor = Color.LTGRAY
+            }else{
+                backgroundColorPath.fillColor = Color.WHITE
+            }
+
+
+            p0.itemView.ivPaletteChild.invalidate()
         }
 
 
-        p0.itemView.ivPaletteChild.invalidate()
+
+
         p0.itemView.setOnClickListener {
             listPalette[p1].selected = true
             if (lastPalettePositionSelected != -1 && lastPalettePositionSelected != p1){
@@ -54,9 +63,9 @@ class PaletteAdapterChild(
             notifyItemChanged(lastPalettePositionSelected)
             lastPalettePositionSelected = p1
             if (listPalette[p1].selected){
-                backgroundColorPath.fillColor = Color.LTGRAY
+                backgroundColorPath?.fillColor = Color.LTGRAY
             }else{
-                backgroundColorPath.fillColor = Color.WHITE
+                backgroundColorPath?.fillColor = Color.WHITE
             }
             p0.itemView.ivPaletteChild.invalidate()
 
