@@ -49,6 +49,8 @@ class PaletteAdapterChild(
 
 
             p0.itemView.ivPaletteChild.invalidate()
+        }else{
+            p0.itemView.ivPaletteChild.setImageResource(listPalette[p1].imageDrawable)
         }
 
 
